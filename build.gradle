@@ -1,0 +1,31 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies { classpath("info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.4.6") }
+}
+
+apply plugin: "idea"
+apply plugin: "java"
+apply plugin: "maven"
+apply plugin: "maven-publish"
+apply plugin: "info.solidsoft.pitest"
+apply plugin: "checkstyle"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter:5.4.2"
+    testImplementation "org.apache.commons:commons-lang3:3.8.1"
+}
+
+java {
+    withSourcesJar()
+}
+
+checkstyle {
+    toolVersion = "8.32"
+    checkstyleTest.enabled = false
+}
