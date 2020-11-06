@@ -11,6 +11,7 @@ apply plugin: "maven"
 apply plugin: "maven-publish"
 apply plugin: "info.solidsoft.pitest"
 apply plugin: "checkstyle"
+apply plugin: "jacoco"
 
 repositories {
     mavenCentral()
@@ -29,3 +30,16 @@ checkstyle {
     toolVersion = "8.32"
     checkstyleTest.enabled = false
 }
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
+check.dependsOn jacocoTestReport
